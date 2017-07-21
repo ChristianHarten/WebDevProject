@@ -1,0 +1,39 @@
+{
+  "name": "webdev",
+  "version": "0.0.1",
+  "description": "Hausarbeit Webenticklung",
+  "scripts": {
+    "start": "node ./server/server.js",
+    "clean": "rmdir /s /q .\\client\\dist\\ && rmdir /s /q .\\node_modules",
+    "predebug": "npm run lint && npm run clean",
+    "debug": "npm install",
+    "postdebug": "npm run build:dist && npm run build:html",
+    "lint": "./node_modules/.bin/eslint client/src/js/main.js",
+    "prebuild": "npm install",
+    "build": "npm run lint",
+    "build:css": "node ./node_modules/less/bin/lessc --clean-css ./client/src/styles/style.less ./client/dist/styles/style.min.css",
+    "build:dist": "mkdir .\\client\\dist\\js",
+    "build:html": "copyfiles -f .\\client\\src\\index.html .\\client\\dist\\",
+    "build:js": "node ./node_modules/browserify/bin/cmd.js client/src/js/main.js -o client/dist/js/bundle.js",
+    "postbuild": "npm run build:dist && npm run build:html && npm run build:css && npm run build:js",
+    "develop": "rmdir /s /q .\\client\\dist\\ && npm run postbuild"
+  },
+  "author": "Kevin Kirsten, Sascha Esch",
+  "license": "ISC",
+  "devDependencies": {
+    "browserify": "^14.4.0",
+    "copyfiles": "^1.2.0",
+    "eslint": "^3.19.0",
+    "less": "^2.7.2",
+    "less-plugin-clean-css": "^1.5.1"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "google-maps": "^3.2.1",
+    "jquery": "^3.2.1",
+    "jsonp": "^0.2.1",
+    "leaflet": "^1.1.0",
+    "method-override": "^2.3.9"
+  }
+}

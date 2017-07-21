@@ -1,106 +1,77 @@
-.flex() {
-  display: -webkit-box;
-  display: -moz-box;
-  display:-webkit-flex;
-  display: -ms-flexbox;
-  display:flex;
-}
+// colors
+@bg-color: #D2E4C8;
+@button-hover-color: orange;
+@black: black;
+@white: white;
 
-.flex-justify(@justifyStyle) {
-
-  .ms-flex-justify(@justifyStyle);
-  -webkit-justify-content: @justifyStyle;
-  justify-content: @justifyStyle;
-}
-
-.flex-direction(@direction) {
-  -ms-flex-direction:@direction;
-  -webkit-flex-direction:@direction;
-  flex-direction:@direction;
-}
-
-.flex-align-items(@alignStyle) {
-  -ms-flex-align:@alignStyle;
-  -webkit-align-items:@alignStyle;
-  align-items: @alignStyle;
-}
-
-.flex-align-self(@selfAlignStyle) {
-  .ms-flex-align-self(@selfAlignStyle);
-  -webkit-align-self:@selfAlignStyle;
-  align-self: @selfAlignStyle;
-}
-
-.flex-order(@order) {
-  -ms-flex-order:@order;
-  -webkit-order:@order;
-  order:@order;
-}
-
-.flex-wrap(@wrap) {
-  -ms-flex-wrap:@wrap;
-  -webkit-flex-wrap:@wrap;
-  flex-wrap:@wrap;
-}
-
-
-
-/* These are the conditional mixins for the different syntax for IE10 Flexbox*/
-.ms-flex-justify(@msJustify) when (@msJustify = space-between)  {
-  -ms-flex-pack:justify;
-}
-
-.ms-flex-justify(@msJustify) when (@msJustify = space-around) {
-  -ms-flex-pack:initial;
-}
-
-.ms-flex-justify(@msJustify) when (@msJustify = flex-end) {
-  -ms-flex-pack:end;
-}
-
-.ms-flex-justify(@msJustify) when (@msJustify = flex-start) {
-  -ms-flex-pack:start;
-}
-
-.ms-flex-justify(@msJustify) when (@msJustify = center) {
-  -ms-flex-pack:center;
-}
-
-.ms-flex-align-self(@msSelfAlign) when (@msSelfAlign = flex-end) {
-  -ms-flex-item-align: end;
-}
-
-.ms-flex-align-self(@msSelfAlign) when (@msSelfAlign = flex-start) {
-  -ms-flex-item-align: start;
-}
-
-.ms-flex-align-self(@msSelfAlign) when (@msSelfAlign = auto), (@msSelfAlign = center),(@msSelfAlign = baseline), (@msSelfAlign = stretch) {
-  -ms-flex-item-align: @msSelfAlign;
-}
-
-
-@bg-color: lightgreen;
+// dimensions
 @content-height: 100%;
+@content-width: 100%;
+@page-nav-container-height: 50px;
+@page-nav-container-width: 100%;
+@page-nav-height: 20px;
+@page-nav-width: 30px;
 
-
+// stylings
 html {
   height: @content-height;
   body {
-    height:100%;
+    height: 100%;
     margin: 0;
   }
 
   main {
-    .flex();
-    .flex-justify(space-around);
-    .flex-direction(row);
+    width: @content-width;
     height: @content-height;
     #map {
-      flex-grow: 2;
+      height: inherit;
+      width: 66.6%;
+      float: left;
     }
-    section {
-      flex-grow: 1;
+    #track {
+      height: 100%;
+      width: 33.3%;
       background-color: @bg-color;
+      float: right;
+      #sidebar-items {
+        span {
+          padding-left: 10px;
+          display: block;
+          width: 100%;
+          height: 25px;
+          line-height: 25px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+      }
     }
   }
+}
+
+.pageNavContainer {
+  position: relative;
+  width: 33%;
+  height: 50px;
+}
+
+.button-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  transform: translateY(-50%);
+}
+
+.pageNav {
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  background: transparent;
+  border: none !important;
+  color: @black;
+  font-size: 20px;
+}
+
+.pageNav:hover {
+  background-color: @button-hover-color;
+  color: @white;
 }

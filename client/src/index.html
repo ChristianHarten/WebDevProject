@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <!-- minified css -->
-    <link rel="stylesheet" href="styles/style.min.css" />
+    <link rel="stylesheet" href="styles/style.min.css"/>
     <title>Webdev Project</title>
 </head>
 <body>
 <main id="output">
     <div id="map"></div>
-    <section id="track"></section>
+    <div id="track">
+        <div class="pageNavContainer">
+            <div class="button-wrapper">
+                <button id="backButton" type="button" class="pageNav"><</button>
+                <button id="forwardButton" type="button" class="pageNav">></button>
+            </div>
+        </div>
+        <div id="sidebar-items"></div>
+    </div>
 </main>
 <!-- Entry point client app-->
 <script src="js/bundle.js"></script>
