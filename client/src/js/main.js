@@ -99,7 +99,6 @@ function addPageNavEventListeners() {
 					currentPage = pages;
 				}
 			}
-			console.log(currentPage);
 			clearSiedebar();
 			calculateElements();
 		});
