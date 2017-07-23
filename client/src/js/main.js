@@ -4,10 +4,15 @@ const httpclient = require("./modules/http-request-helper");
 const elemUtils = require("./modules/element-utils");
 const apiGetRequestURL = "http://localhost:8080/data/list";
 
+// client: HttpClient instance
 let client = new httpclient.HttpClient();
+// utils: element utils instance. holds functions to load map, display tracks etc
 let utils;
+// tracksArray: stores server response
 let tracksArray;
+// zoomFactor: zoom factor for map
 let zoomFactor = 11;
+// htmlhelper: HtmlHelper instance, stores html id´s
 let htmlhelper = new elemUtils.HTMLHelper()
 	.sidebarID("sidebar")
 	.pageNavigationContainerID("pageNavContainer")
