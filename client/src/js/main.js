@@ -10,8 +10,6 @@ let client = new httpclient.HttpClient();
 let utils;
 // tracksArray: stores server response
 let tracksArray;
-// zoomFactor: zoom factor for map
-let zoomFactor = 11;
 // htmlhelper: HtmlHelper instance, stores html id´s
 let htmlhelper = new elemUtils.HTMLHelper()
 	.sidebarID("sidebar")
@@ -28,7 +26,7 @@ let htmlhelper = new elemUtils.HTMLHelper()
 client.get(apiGetRequestURL, function (response) {
 	tracksArray = JSON.parse(response);
 	utils = new elemUtils.Calculator(tracksArray, htmlhelper);
-	utils.setZoomFactor(zoomFactor);
+	utils.setZoomFactor(11);
 	utils.loadMapPart(52.370216, 4.895168);
 	utils.calculateElements();
 	utils.addPageNavListeners();

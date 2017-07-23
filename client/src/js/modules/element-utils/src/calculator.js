@@ -29,8 +29,13 @@ let Calculator = function (trackArray, html) {
 		let height = document.getElementById(htmlhelper.sidebarID()).clientHeight;
 		let pageNavHeight = document.getElementsByClassName(htmlhelper.pageNavigationContainerID())[0].clientHeight;
 		elementCount = Math.floor((height - pageNavHeight - 7) / 25); // 25px per track, why 7? it works lol
-		let paginatedTracksArray = _this.paginate(tracksArray, elementCount, currentPage);
 		pages = Math.ceil(tracksArray.length / elementCount);
+		// currentPage = pages after resize to prevent currentPage from getting to big
+		if (currentPage > pages) {
+			currentPage = pages;
+		}
+		let paginatedTracksArray = _this.paginate(tracksArray, elementCount, currentPage);
+
 		_this.removeEventListeners();
 		_this.displayTracks(paginatedTracksArray);
 		_this.addEventListeners();
@@ -152,18 +157,21 @@ let Calculator = function (trackArray, html) {
 		_this.loadMapPart(tracksArray[indexPosition].features[0].geometry.coordinates[0][1], tracksArray[indexPosition].features[0].geometry.coordinates[0][0]);
 		mapUtils.drawTrack(drawableCoordinates, zoomFactor);
 	};
+	this.recenterMap = function () {
+		mapUtils.recenter();
+	};
 	/**
 	 * debounce function: sets timeout to prevent resize event from firing too often
 	 */
 	let timer;
-	let center;
 	window.addEventListener("resize", function () {
 		clearTimeout(timer);
 		timer = setTimeout(function () {
 			_this.clearSidebar();
 			_this.calculateElements();
-			mapUtils.recenterMap(center);
+			_this.recenterMap();
 		}, 250);
 	});
 };
+
 module.exports = Calculator;

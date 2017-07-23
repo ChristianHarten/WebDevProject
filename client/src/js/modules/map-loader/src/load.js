@@ -4,18 +4,20 @@
  */
 let Loader = function () {
 	let map,
+		center,
 		track;
 	this.initMap = function (lat, lng, zoom) {
 		map = new google.maps.Map(document.getElementById("map"), {
 			center: {lat: lat, lng: lng},
 			zoom: zoom
 		});
+		center = map.getCenter();
 	};
 	this.drawTrack = function (coordinatesArray, zoom) {
 		if (track !== undefined) {
 			track.setMap(null);
 		}
-		let center = new google.maps.LatLng(coordinatesArray[0].lat, coordinatesArray[0].lng);
+		center = new google.maps.LatLng(coordinatesArray[0].lat, coordinatesArray[0].lng);
 		map.setCenter(center);
 		map.setZoom(zoom);
 		track = new google.maps.Polyline({
@@ -26,13 +28,9 @@ let Loader = function () {
 		});
 		track.setMap(map);
 	};
-	this.recenterMap = function (center) {
-		google.maps.event.trigger(map, "resize");
+	this.recenter = function () {
 		map.setCenter(center);
 	};
-	this.getMapCenter = function () {
-		return map.getCenter();
-	}
 };
 
 module.exports = Loader;
