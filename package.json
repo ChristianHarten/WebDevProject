@@ -1,7 +1,7 @@
 {
   "name": "webdev",
-  "version": "0.0.1",
-  "description": "Hausarbeit Webenticklung",
+  "version": "1.0.0",
+  "description": "Hausarbeit Webenticklung - GeoJSON Tracks Rest API",
   "scripts": {
     "start": "node ./server/server.js",
     "clean": "rmdir /s /q .\\client\\dist\\ && rmdir /s /q .\\node_modules",

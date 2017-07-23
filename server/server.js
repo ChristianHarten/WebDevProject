@@ -9,9 +9,9 @@ const app = express();
 // deploy static files
 app.use("/", express.static("client/dist"));
 
-// routing: / als root, get und post anfragen in api klasse definiert
 // routing: "/data" as root
 app.use("/data", routes);
+
 
 // read port, if available, set to 8080 otherwise
 let port = process.argv[2] || 8080;

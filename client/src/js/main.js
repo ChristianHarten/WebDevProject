@@ -2,7 +2,7 @@
 //loads modules and invokes methods to do work
 const httpclient = require("./modules/http-request-helper");
 const elemUtils = require("./modules/element-utils");
-const apiGetRequestURL = "http://localhost:8080/data/list";
+const apiGetRequestURL = "http://192.168.178.35:8080/data/list";
 
 // client: HttpClient instance
 let client = new httpclient.HttpClient();
