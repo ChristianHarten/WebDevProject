@@ -9,7 +9,9 @@ let HTMLHelper = function () {
 		sidebarItemContainerID,
 		nextButtonID,
 		prevButtonID,
-		navigationButtonClass;
+		navigationButtonClass,
+		currentPageID,
+		allPagesID;
 	this.sidebarID = function (id) {
 		if (!arguments.length) {
 			return sidebarID;
@@ -57,6 +59,20 @@ let HTMLHelper = function () {
 			return navigationButtonClass;
 		}
 		navigationButtonClass = className;
+		return this;
+	};
+	this.currentPageID = function (id) {
+		if (!arguments.length) {
+			return currentPageID;
+		}
+		currentPageID = id;
+		return this;
+	};
+	this.allPagesID = function (id) {
+		if (!arguments.length) {
+			return allPagesID;
+		}
+		allPagesID = id;
 		return this;
 	};
 };

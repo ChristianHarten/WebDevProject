@@ -15,7 +15,9 @@ let htmlhelper = new elemUtils.HTMLHelper()
 	.sidebarItemContainerID("sidebar-items")
 	.nextButtonID("forwardButton")
 	.prevButtonID("backButton")
-	.navigationButtonClass("pageNav");
+	.navigationButtonClass("pageNav")
+	.currentPageID("currentPage")
+	.allPagesID("allPages");
 
 // get request, loads default map part (first entry in tracks)
 client.get(apiGetRequestURL, function (response) {

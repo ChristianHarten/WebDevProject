@@ -34,6 +34,7 @@ let Calculator = function (trackArray, html) {
 		_this.removeEventListeners();
 		_this.displayTracks(paginatedTracksArray);
 		_this.addEventListeners();
+		_this.updatePages();
 	};
 	/**
 	 * Function to display tracks in container
@@ -60,6 +61,30 @@ let Calculator = function (trackArray, html) {
 			let sidebarContainer = document.getElementById(htmlhelper.sidebarItemContainerID());
 			sidebarContainer.appendChild(spanElement);
 		}
+	};
+	this.updatePages = function () {
+		document.getElementById(htmlhelper.currentPageID()).innerHTML = currentPage.toString();
+		document.getElementById(htmlhelper.allPagesID()).innerHTML = pages.toString();
+	};
+	/**
+	 * Paginates array
+	 * @param array array to paginate
+	 * @param pageSize amount of elements you want to display
+	 * @param pageNumber number of current page
+	 * @returns {*|ArrayBuffer|Blob|Array|Buffer|string} paginated array
+	 */
+	this.paginate = function (array, pageSize, pageNumber) {
+		--pageNumber;
+		return array.slice(pageNumber * pageSize, (pageNumber + 1) * pageSize);
+	};
+	/**
+	 * Clears sidebar after resize or change of page by user
+	 */
+	this.clearSidebar = function () {
+		document.getElementById(htmlhelper.sidebarItemContainerID()).innerHTML = "";
+	};
+	this.setZoomFactor = function (zoom) {
+		zoomFactor = zoom;
 	};
 	/**
 	 * Removes Listeners to prevent more than one registration
@@ -126,26 +151,6 @@ let Calculator = function (trackArray, html) {
 		}
 		_this.loadMapPart(tracksArray[indexPosition].features[0].geometry.coordinates[0][1], tracksArray[indexPosition].features[0].geometry.coordinates[0][0]);
 		mapUtils.drawTrack(drawableCoordinates, zoomFactor);
-	};
-	/**
-	 * Paginates array
-	 * @param array array to paginate
-	 * @param pageSize amount of elements you want to display
-	 * @param pageNumber number of current page
-	 * @returns {*|ArrayBuffer|Blob|Array|Buffer|string} paginated array
-	 */
-	this.paginate = function (array, pageSize, pageNumber) {
-		--pageNumber;
-		return array.slice(pageNumber * pageSize, (pageNumber + 1) * pageSize);
-	};
-	/**
-	 * Clears sidebar after resize or change of page by user
-	 */
-	this.clearSidebar = function () {
-		document.getElementById(htmlhelper.sidebarItemContainerID()).innerHTML = "";
-	};
-	this.setZoomFactor = function (zoom) {
-		zoomFactor = zoom;
 	};
 	/**
 	 * debounce function: sets timeout to prevent resize event from firing too often
