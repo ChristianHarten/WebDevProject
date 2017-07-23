@@ -1,3 +1,7 @@
+/**
+ * Helper class to load, draw and recenter map
+ * @constructor
+ */
 let Loader = function () {
 	let map,
 		track;
@@ -12,7 +16,6 @@ let Loader = function () {
 			track.setMap(null);
 		}
 		let center = new google.maps.LatLng(coordinatesArray[0].lat, coordinatesArray[0].lng);
-		console.log("draw:" + center);
 		map.setCenter(center);
 		map.setZoom(zoom);
 		track = new google.maps.Polyline({

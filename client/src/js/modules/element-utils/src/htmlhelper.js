@@ -1,3 +1,7 @@
+/**
+ * Helper class for easier html access, contains getter and setter
+ * @constructor
+ */
 let HTMLHelper = function () {
 	let sidebarID,
 		pageNavigationContainerID,

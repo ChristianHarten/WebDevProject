@@ -1,10 +1,10 @@
 //main file for client app
 //loads modules and invokes methods to do work
-const HttpClient = require("./modules/http-request-helper");
+const httpclient = require("./modules/http-request-helper");
 const elemUtils = require("./modules/element-utils");
 const apiGetRequestURL = "http://localhost:8080/data/list";
 
-let client = new HttpClient.HttpClient();
+let client = new httpclient.HttpClient();
 let utils;
 let tracksArray;
 let zoomFactor = 11;

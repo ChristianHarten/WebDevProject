@@ -1,4 +1,13 @@
+/**
+ * Helper class to perform requests
+ * @constructor
+ */
 let HttpClient = function () {
+	/**
+	 * Performs GET request
+	 * @param url GET request URL
+	 * @param callback Handler function
+	 */
 	this.get = function (url, callback) {
 		let request = new XMLHttpRequest();
 		request.onreadystatechange = function () {

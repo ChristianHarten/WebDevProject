@@ -1,3 +1,6 @@
+/**
+ * Helper class for calculating elements, showing tracks, adding event listeners etc
+ */
 const mapLoader = require("../../map-loader");
 let Calculator = function (trackArray, html) {
 	let _this = this,

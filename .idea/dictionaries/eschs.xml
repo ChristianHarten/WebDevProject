@@ -3,9 +3,13 @@
     <words>
       <w>debounce</w>
       <w>gapi</w>
+      <w>gapiurl</w>
       <w>htmlhelper</w>
+      <w>httpclient</w>
+      <w>jsonp</w>
       <w>lightgrey</w>
       <w>minified</w>
+      <w>onreadystatechange</w>
       <w>webdev</w>
     </words>
   </dictionary>
