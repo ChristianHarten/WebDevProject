@@ -154,7 +154,7 @@ let Calculator = function (trackArray, html) {
 				lng: tracksArray[indexPosition].features[0].geometry.coordinates[i][0]
 			});
 		}
-		_this.loadMapPart(tracksArray[indexPosition].features[0].geometry.coordinates[0][1], tracksArray[indexPosition].features[0].geometry.coordinates[0][0]);
+		//_this.loadMapPart(tracksArray[indexPosition].features[0].geometry.coordinates[0][1], tracksArray[indexPosition].features[0].geometry.coordinates[0][0]);
 		mapUtils.drawTrack(drawableCoordinates, zoomFactor);
 	};
 	this.recenterMap = function () {

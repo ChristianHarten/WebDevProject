@@ -5,11 +5,13 @@
 let Loader = function () {
 	let map,
 		center,
-		track;
+		track,
+		elevator;
 	this.initMap = function (lat, lng, zoom) {
 		map = new google.maps.Map(document.getElementById("map"), {
 			center: {lat: lat, lng: lng},
-			zoom: zoom
+			zoom: zoom,
+			disableDefaultUI: true
 		});
 		center = map.getCenter();
 	};
@@ -27,6 +29,31 @@ let Loader = function () {
 			strokeWeight: 2,
 		});
 		track.setMap(map);
+		elevator = new google.maps.ElevationService;
+		elevator.getElevationAlongPath({
+			"path": coordinatesArray,
+			"samples": 500
+		}, function (elevations, status) {
+			let chartDiv = document.getElementById("elevationChart");
+			if (status !== "OK") {
+				chartDiv.innerHTML = "";
+				alert("Konnte Höhenprofil zur Strecke nicht laden. Fehler " + status);
+				return;
+			}
+			let chart = new google.visualization.ColumnChart(chartDiv);
+			let data = new google.visualization.DataTable();
+			data.addColumn("string", "Sample");
+			data.addColumn("number", "Elevation");
+			for (let i = 0; i < elevations.length; i++) {
+				data.addRow(["", elevations[i].elevation]);
+			}
+			chart.draw(data, {
+				height: 125,
+				width: 250,
+				legend: "none",
+				titleY: "Höhenprofil in Meter"
+			});
+		});
 	};
 	this.recenter = function () {
 		map.setCenter(center);

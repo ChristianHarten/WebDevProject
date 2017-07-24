@@ -11,7 +11,8 @@ let HTMLHelper = function () {
 		prevButtonID,
 		navigationButtonClass,
 		currentPageID,
-		allPagesID;
+		allPagesID,
+		elevationChartID;
 	this.sidebarID = function (id) {
 		if (!arguments.length) {
 			return sidebarID;
@@ -73,6 +74,13 @@ let HTMLHelper = function () {
 			return allPagesID;
 		}
 		allPagesID = id;
+		return this;
+	};
+	this.elevationChartID = function (id) {
+		if (!arguments.length) {
+			return elevationChartID;
+		}
+		elevationChartID = id;
 		return this;
 	};
 };

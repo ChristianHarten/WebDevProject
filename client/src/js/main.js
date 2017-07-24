@@ -20,7 +20,8 @@ let htmlhelper = new elemUtils.HTMLHelper()
 	.prevButtonID("backButton")
 	.navigationButtonClass("pageNav")
 	.currentPageID("currentPage")
-	.allPagesID("allPages");
+	.allPagesID("allPages")
+	.elevationChartID("elevationChart");
 
 // get request, loads default map part (first entry in tracks)
 client.get(apiGetRequestURL, function (response) {

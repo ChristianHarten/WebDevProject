@@ -2,10 +2,12 @@
   <dictionary name="eschs">
     <words>
       <w>callbackname</w>
+      <w>chartapiurl</w>
       <w>cors</w>
       <w>debounce</w>
       <w>gapi</w>
       <w>gapiurl</w>
+      <w>googleloader</w>
       <w>htmlhelper</w>
       <w>httpclient</w>
       <w>jsonp</w>
