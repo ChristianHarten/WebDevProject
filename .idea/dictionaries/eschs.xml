@@ -12,8 +12,11 @@
       <w>httpclient</w>
       <w>jsonp</w>
       <w>lightgrey</w>
+      <w>maploader</w>
+      <w>maputils</w>
       <w>minified</w>
       <w>onreadystatechange</w>
+      <w>polyline</w>
       <w>webdev</w>
     </words>
   </dictionary>

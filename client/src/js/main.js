@@ -1,35 +1,16 @@
-//main file for client app
-//loads modules and invokes methods to do work
 const httpclient = require("./modules/http-request-helper");
+const maputils = require("./modules/map-utils");
 const elemUtils = require("./modules/element-utils");
-const port = window.location.port;
-const apiGetRequestURL = "http://localhost:8080/data/list";//"http://192.168.178.189:" + port + "/data/list";
 
-// client: HttpClient instance
-let client = new httpclient.HttpClient();
-// utils: element utils instance. holds functions to load map, display tracks etc
-let utils;
-// tracksArray: stores server response
 let tracksArray;
-// htmlhelper: HtmlHelper instance, stores html id´s
-let htmlhelper = new elemUtils.HTMLHelper()
-	.sidebarID("sidebar")
-	.pageNavigationContainerID("pageNavContainer")
-	.trackElementID("navigationElement")
-	.sidebarItemContainerID("sidebar-items")
-	.nextButtonID("forwardButton")
-	.prevButtonID("backButton")
-	.navigationButtonClass("pageNav")
-	.currentPageID("currentPage")
-	.allPagesID("allPages")
-	.elevationChartID("elevationChart");
+let client = new httpclient.HttpClient();
+let mapLoader = new maputils.MapLoader();
 
-// get request, loads default map part (first entry in tracks)
-client.get(apiGetRequestURL, function (response) {
-	tracksArray = JSON.parse(response);
-	utils = new elemUtils.Calculator(tracksArray, htmlhelper);
-	utils.setZoomFactor(11);
-	utils.loadMapPart(52.370216, 4.895168);
-	utils.calculateElements();
-	utils.addPageNavListeners();
-});
+mapLoader.setMapView(52.370216, 4.895168);
+client.get("http://localhost:8080/data/list", handleGetResponse);
+
+function handleGetResponse(data) {
+	tracksArray = data;
+	let elementTools = new elemUtils.ElementTools(tracksArray, mapLoader);
+	elementTools.displayTracks();
+}

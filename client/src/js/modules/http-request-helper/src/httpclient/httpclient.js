@@ -2,12 +2,9 @@
  * Helper class to perform requests
  * @constructor
  */
-let HttpClient = function () {
-	/**
-	 * Performs GET request
-	 * @param url GET request URL
-	 * @param callback Handler function
-	 */
+const $ = require("jquery");
+/*let HttpClient = function () {
+
 	this.get = function (url, callback) {
 		let request = new XMLHttpRequest();
 		request.onreadystatechange = function () {
@@ -17,6 +14,14 @@ let HttpClient = function () {
 		};
 		request.open("GET", url, true);
 		request.send(null);
+	};
+};*/
+
+let HttpClient = function () {
+	this.get = function (url, callback) {
+		$.getJSON(url, function (data) {
+			callback(data);
+		});
 	};
 };
 

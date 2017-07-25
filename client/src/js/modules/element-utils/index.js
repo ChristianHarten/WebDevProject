@@ -1,4 +1,4 @@
 module.exports = {
-	Calculator: require("./src/calculator"),
+	ElementTools: require("./src/elementtools"),
 	HTMLHelper: require("./src/htmlhelper")
 };
