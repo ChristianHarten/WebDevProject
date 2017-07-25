@@ -3,7 +3,7 @@
 const httpclient = require("./modules/http-request-helper");
 const elemUtils = require("./modules/element-utils");
 const port = window.location.port;
-const apiGetRequestURL = "http://192.168.178.35:" + port + "/data/list";
+const apiGetRequestURL = "http://localhost:8080/data/list";//"http://192.168.178.189:" + port + "/data/list";
 
 // client: HttpClient instance
 let client = new httpclient.HttpClient();

@@ -9,7 +9,6 @@ let chartapiurl = "https://www.gstatic.com/charts/loader.js";
 let firstLoad = true;
 exports.load = function (done) {
 	if (firstLoad) {
-		console.log("Hallo");
 		loadVisualizationApi();
 		jsonp(gapiurl, "__googleMapsApiOnLoadCallback", done);
 	}

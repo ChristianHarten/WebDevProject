@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "express": "^4.15.3",
-    "jsonp": "^0.2.1"
+    "jsonp": "^0.2.1",
+    "leaflet": "^1.1.0"
   }
 }
