@@ -120,6 +120,7 @@ let ElementTools = function (trackArray, maploader) {
 		timer = setTimeout(function () {
 			clearSidebar();
 			_this.displayTracks();
+			map.updateElevationChart();
 		}, 250);
 	});
 };

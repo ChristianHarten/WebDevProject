@@ -13,7 +13,7 @@
     "build": "npm run lint",
     "build:css": "node ./node_modules/less/bin/lessc --clean-css ./client/src/styles/style.less ./client/dist/styles/style.min.css",
     "build:dist": "mkdir .\\client\\dist\\js",
-    "build:leaflet": "copyfiles -f .\\client\\src\\leaflet\\* .\\client\\dist\\leaflet\\ && copyfiles -f .\\client\\src\\leaflet\\images\\* .\\client\\dist\\leaflet\\images\\",
+    "build:leaflet": "copyfiles -f .\\client\\src\\leaflet\\leaflet.css .\\client\\dist\\leaflet\\ && copyfiles -f .\\client\\src\\leaflet\\images\\* .\\client\\dist\\leaflet\\images\\",
     "build:html": "copyfiles -f .\\client\\src\\index.html .\\client\\dist\\",
     "build:js": "node ./node_modules/browserify/bin/cmd.js client/src/js/main.js -o client/dist/js/bundle.js",
     "postbuild": "npm run build:dist && npm run build:leaflet && npm run build:html && npm run build:css && npm run build:js",
@@ -29,10 +29,9 @@
     "less-plugin-clean-css": "^1.5.1"
   },
   "dependencies": {
-    "chartjs": "^0.3.24",
+    "d3": "^4.10.0",
     "express": "^4.15.3",
     "jquery": "^3.2.1",
-    "jsonp": "^0.2.1",
     "leaflet": "^1.1.0"
   }
 }

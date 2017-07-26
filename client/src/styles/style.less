@@ -36,13 +36,18 @@ html {
       height: 100%;
       width: @map-width;
       float: left;
+      z-index: 1;
     }
     #elevationChart {
       position: absolute;
-      opacity: 0.8;
+      opacity: 0.7;
       left: 10px;
       top: 10px;
       z-index: 5;
+      #elev {
+        background-color: @black;
+        z-index: 6;
+      }
     }
     #sidebar {
       height: @sidebar-height;
@@ -59,6 +64,7 @@ html {
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
+          cursor: pointer;
         }
       }
     }
@@ -97,4 +103,20 @@ html {
   top: 50%;
   right: 10%;
   transform: translateY(-50%);
+}
+
+.line {
+  fill: @white;
+  stroke: @white;
+  stroke-width: 1;
+}
+
+.axisWhite {
+  path, line{
+    stroke: @white;
+    stroke-width: 1;
+  }
+  text {
+    fill: @white;
+  }
 }

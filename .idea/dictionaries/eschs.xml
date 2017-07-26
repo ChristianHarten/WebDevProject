@@ -4,12 +4,18 @@
       <w>callbackname</w>
       <w>chartapiurl</w>
       <w>cors</w>
+      <w>datapoints</w>
+      <w>dataset</w>
+      <w>datasets</w>
       <w>debounce</w>
+      <w>doppelt</w>
       <w>gapi</w>
       <w>gapiurl</w>
       <w>googleloader</w>
+      <w>haben</w>
       <w>htmlhelper</w>
       <w>httpclient</w>
+      <w>irgendwie</w>
       <w>jsonp</w>
       <w>lightgrey</w>
       <w>maploader</w>
@@ -17,6 +23,7 @@
       <w>minified</w>
       <w>onreadystatechange</w>
       <w>polyline</w>
+      <w>unschön</w>
       <w>webdev</w>
     </words>
   </dictionary>
