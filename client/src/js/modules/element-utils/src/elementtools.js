@@ -78,7 +78,6 @@ let ElementTools = function (trackArray, maploader) {
 	}
 
 	let listenerAdded = false;
-
 	function addPageNavEventListener() {
 		if (!listenerAdded) {
 			let pageNavButtons = document.getElementsByClassName("pageNav");
@@ -93,7 +92,7 @@ let ElementTools = function (trackArray, maploader) {
 		let el = ev.target;
 		let indexPosition = el.dataset.id;
 		let drawableCoordinates = tracks[indexPosition];
-		map.drawTrack(drawableCoordinates, 13);
+		map.drawTrack(drawableCoordinates);
 	}
 
 	function handlePageNavClick(ev) {
