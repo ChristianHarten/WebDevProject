@@ -5,8 +5,8 @@ const path = require("path");
 const dataDirectory = path.join(__dirname, "..", "data");
 const router = express.Router();
 
-/**
- * Sends all available tracks as a string to client
+/*
+ * Sendet alle verfügbaren GeoJSON Files an Client
  */
 router.get("/list", function (req, res) {
 	let tracksCount = countTracks();
@@ -17,10 +17,8 @@ router.get("/list", function (req, res) {
 	res.send(tracks);
 });
 
-/**
- *
- * @returns {number} Number of tracks stored on data directory
- * 0 if error happens
+/*
+ * Zählt vorhandene GeoJSON File unter bestimmtem Pfad (dataDirectory)
  */
 function countTracks () {
 	try {

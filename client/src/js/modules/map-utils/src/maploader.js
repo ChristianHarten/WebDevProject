@@ -1,3 +1,6 @@
+/*
+ * Hilfsmodul für Map Operationen, zeichnen der Pfade auf Map, Anzeigen des Höhenprofils mit d3
+ */
 const L = require("leaflet");
 const d3 = require("d3");
 
@@ -11,20 +14,24 @@ let MapLoader = function () {
 		},
 		trackLayer,
 		heightData = [],
+		bounds = [],
 		maxHeight;
 
-	this.setMapView = function (lat, lng) {
-		map.setView([lat, lng], 12);
-	};
+	/*
+	 * Erhält GeoJSON Feature und zeichnet darin enthaltene Koordinaten auf Map
+	 * Entfernt Layer, falls vorhanden und setzt diesen neu
+	 * Zentriert Map auf diesen Pfad und updatet Höhenprofil
+	 */
 	this.drawTrack = function (coordinates) {
-		_this.setMapView(coordinates.features[0].geometry.coordinates[0][1], coordinates.features[0].geometry.coordinates[0][0]);
 		if (trackLayer) {
 			map.removeLayer(trackLayer);
 		}
 		trackLayer = L.geoJSON(coordinates, {
 			style: trackStyle,
-			onEachFeature: saveHeightDataAndMaxHeight
+			onEachFeature: saveHeightDataAndCenterBounds
 		}).addTo(map);
+
+		map.fitBounds(bounds);
 
 		_this.updateElevationChart();
 	};
@@ -32,18 +39,30 @@ let MapLoader = function () {
 		displayElevation();
 	};
 
-	function saveHeightDataAndMaxHeight(feature) {
+	/*
+	 * private Hilfsfunktion, speichert Höhendaten des GeoJSON Features und maximale Höhe für y Achse
+	 * Speichert Koordinaten als L.LatLng um Karte mit diesen Koordinaten zu zentrieren
+	 */
+	function saveHeightDataAndCenterBounds(feature) {
 		maxHeight = 0;
 		let len = feature.geometry.coordinates.length;
 		if (heightData.length) {
 			heightData.length = 0;
 		}
+		if (bounds.length) {
+			bounds.length = 0;
+		}
+		// push 0 am Anfang und Ende für schönere Kurve. Da gibts sicher einen schöneren Weg, hm
 		for (let i = 0; i < len; i++) {
 			if (i === 0) {
 				heightData.push(0);
 			}
 			let currentHeight = feature.geometry.coordinates[i][2];
 			heightData.push(currentHeight);
+
+			let corner = new L.LatLng(feature.geometry.coordinates[i][1], feature.geometry.coordinates[i][0]);
+			bounds.push(corner);
+
 			maxHeight = Math.max(currentHeight, maxHeight);
 			if (i === len - 1) {
 				heightData.push(0); // hm
@@ -51,6 +70,9 @@ let MapLoader = function () {
 		}
 	}
 
+	/*
+	 * private Funktion, initialisiert Map mit Tiles etc, zentriert auf Trier
+	 */
 	function init() {
 		let tmpMap = L.map("map", {zoomControl: false});
 		let osmTiles = "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
@@ -61,27 +83,38 @@ let MapLoader = function () {
 			maxZoom: 18,
 			attribution: attribution
 		}).addTo(tmpMap);
+		tmpMap.setView([52.370216, 4.895168], 12);
 		return tmpMap;
 	}
 
+	/*
+	 * private Funktion zum Berechnen und Anzeigen des Höhenprofils
+	 */
 	function displayElevation() {
+		// entferne Chart, falls vorhanden; Prüfung nach Existenz nicht notwendig
 		d3.select("#elev").remove();
+
+		// lese Dimensionen der Map aus und berechne Höhe und Breite des Charts in deren Abhängigkeit
+		// Höhe maximal 120px, evtl hier noch nachbessern, sieht auf manchen Screens zu klein aus
 		let dimensions = d3.select("#map").node().getBoundingClientRect();
 		let margin = {top: 15, right: 15, bottom: 15, left: 30}
 			, width = dimensions.width / 4
 			, height = dimensions.height / 3 > 120 ? 120 : dimensions.height / 3;
 
-		// The number of datapoints
+		// Anzahl der Datenelemente
 		let n = heightData.length;
-		// An array of objects of length N. Each object has key -> value pair, the key being "y" and the value is height of track
+		// Gibt ein Array der Länge n zurück. Jeder Eintrag ist key-value Paar, wobei
+		// key = y und value = datenelement
 		let dataset = d3.range(n).map(function (d) {
 			return {"y": heightData[d]}
 		});
 
+		// skaliert x Achse in Abhängigkeit der Breite und Anzahl der Datenelemente
 		let xScale = d3.scaleLinear()
 			.domain([0, n - 1]) // input
 			.range([0, width]); // output
 
+		// skaliert y Achse in Abhängikeit von Höhe  und maximaler Höhe in GeoJSON Feature
 		let yScale = d3.scaleLinear()
 			.domain([0, maxHeight]) // input
 			.range([height, 0]); // output
@@ -96,7 +129,7 @@ let MapLoader = function () {
 			}) // set the y values for the line generator
 			.curve(d3.curveMonotoneX);// apply smoothing to the line
 
-		// Add the SVG to the page and employ #2
+		// Füge SVG zur Seite hinzu (in elevationChart div)
 		let svg = d3.select("#elevationChart")
 			.append("svg")
 			.attr("width", width + margin.left + margin.right)
@@ -105,22 +138,22 @@ let MapLoader = function () {
 			.append("g")
 			.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-		// Call the x axis in a group tag
+		// x Achse in group tag
 		svg.append("g")
 			.attr("class", "axisWhite")
 			.attr("transform", "translate(0," + height + ")")
-			.call(d3.axisBottom(xScale).ticks(0)); // Create an axis component with d3.axisBottom
+			.call(d3.axisBottom(xScale).ticks(0));
 
-		// Call the y axis in a group tag
+		// y Achse in group tag
 		svg.append("g")
 			.attr("class", "axisWhite")
-			.call(d3.axisLeft(yScale).ticks(4)); // Create an axis component with d3.axisLeft
+			.call(d3.axisLeft(yScale).ticks(4));
 
-		// Append the path, bind the data, and call the line generator
+		// Füge path tag hinzu, binde Daten an path und rufe d3 line generator auf
 		svg.append("path")
-			.datum(dataset) // 10. Binds data to the line
-			.attr("class", "line") // Assign a class for styling
-			.attr("d", line); // 11. Calls the line generator
+			.datum(dataset)
+			.attr("class", "line")
+			.attr("d", line);
 	}
 };
 
