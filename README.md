@@ -17,4 +17,5 @@
  
  **Eigene Module:**   
  * map-utils --> enthält Logik zum Zeichnen auf der Map und zum Anzeigen des Höhenprofils mit d3.js v4    
- * http-request-helper --> enthält Logik zum Ausführen der Anfragen (GET, POST, PUT, DELETE) mit jQuery. Unterstützt aktuell nur GET Anfrage    * element-utils --> enthält Logik zum Berechnen und Anzeigen der GeoJSON Daten als Tracks in Sidebar. Kapselt auch EventListener   
+ * http-request-helper --> enthält Logik zum Ausführen der Anfragen (GET, POST, PUT, DELETE) mit jQuery. Unterstützt aktuell nur GET Anfrage    
+ * element-utils --> enthält Logik zum Berechnen und Anzeigen der GeoJSON Daten als Tracks in Sidebar. Kapselt auch EventListener   
