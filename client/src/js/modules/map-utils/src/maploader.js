@@ -2,9 +2,8 @@
  * Hilfsmodul für Map Operationen, zeichnen der Pfade auf Map, Anzeigen des Höhenprofils mit d3
  */
 const L = require("leaflet");
-const d3 = require("d3");
 
-let MapLoader = function () {
+let MapLoader = function (d3) {
 	let _this = this,
 		map = init(),
 		trackStyle = {

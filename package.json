@@ -1,6 +1,6 @@
 {
   "name": "webdev",
-  "version": "1.0.0",
+  "version": "2.2.0",
   "description": "Hausarbeit Webenticklung - GeoJSON Tracks Rest API",
   "scripts": {
     "start": "node ./server/server.js",
@@ -31,7 +31,6 @@
   "dependencies": {
     "d3": "^4.10.0",
     "express": "^4.15.3",
-    "jquery": "^3.2.1",
     "leaflet": "^1.1.0"
   }
 }

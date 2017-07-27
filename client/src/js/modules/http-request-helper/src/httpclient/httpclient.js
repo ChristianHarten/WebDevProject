@@ -1,10 +1,9 @@
 /*
- * Hilfsmodul um Requests mit jQuery auszuführen
+ * Hilfsmodul um Requests mit d3 auszuführen
  */
-const $ = require("jquery");
-let HttpClient = function () {
+let HttpClient = function (d3) {
 	this.get = function (url, callback) {
-		$.getJSON(url, function (data) {
+		d3.json(url, function (data) {
 			callback(data);
 		});
 	};
