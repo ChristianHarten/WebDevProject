@@ -6,7 +6,7 @@
     "start": "node ./server/server.js",
     "clean": "rmdir /s /q .\\client\\dist\\ && rmdir /s /q .\\node_modules",
     "predebug": "npm install",
-    "debug": "npm run deletedist && npm run lint",
+    "debug": "npm run lint",
     "debug:css": "node ./node_modules/less/bin/lessc ./client/src/styles/style.less ./client/dist/styles/style.min.css",
     "debug:dist": "mkdir .\\client\\dist\\js",
     "debug:leaflet": "copyfiles -f .\\node_modules\\leaflet\\dist\\leaflet.css .\\client\\dist\\leaflet\\ && copyfiles -f .\\node_modules\\leaflet\\dist\\images\\* .\\client\\dist\\leaflet\\images\\",
@@ -22,8 +22,7 @@
     "build:html": "copyfiles -f .\\client\\src\\index.html .\\client\\dist\\",
     "build:js": "node ./node_modules/browserify/bin/cmd.js client/src/js/main.js -o client/dist/js/main.js",
     "build:jsmin": "npm run build:js && babili client/dist/js/main.js > client/dist/js/bundle.min.js && del \".\\client\\dist\\js\\main.js\"",
-    "postbuild": "npm run build:dist && npm run build:leaflet && npm run build:html && npm run build:css && npm run build:jsmin",
-    "deletedist": "rmdir /s /q .\\client\\dist\\"
+    "postbuild": "npm run build:dist && npm run build:leaflet && npm run build:html && npm run build:css && npm run build:jsmin"
   },
   "author": "Kevin Kirsten, Sascha Esch",
   "license": "ISC",
