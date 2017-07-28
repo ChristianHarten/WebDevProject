@@ -16,8 +16,6 @@
  
  **Eigene Module:**   
  * map-utils --> enthält Logik zum Zeichnen auf der Map und zum Anzeigen des Höhenprofils mit d3.js v4    
- * http-request-helper --> enthält Logik zum Ausführen der Anfragen (GET, POST, PUT, DELETE) mit jQuery. Unterstützt aktuell nur GET Anfrage    
+ * http-request-helper --> enthält Logik zum Ausführen der Anfragen (GET, POST, PUT, DELETE) mit d3.js v4. Unterstützt aktuell nur GET Anfrage    
  * element-utils --> enthält Logik zum Berechnen und Anzeigen der GeoJSON Daten als Tracks in Sidebar. Kapselt auch EventListener   
-
-**d3:**   
-Da wir nicht herausgefunden haben, wie man mit Leaflet Höhenprofile anhand von GeoJSON Features zeichnet und das, was wir gefunden haben (Leaflet Plugin Leaflet.Elevation) mit Browserify offensichtlich weniger gut funktioniert hat (zumindest haben wir es nicht zum Laufen bringen können), haben wir uns dazu entschieden, das Höhenprofil mit einer geeigneten Library selbst zu zeichnen. Zu diesem Zweck haben wir auf d3.js v4 zurückgegriffen, da andere Libraries entweder nicht mit Browserify liefen, nicht als npm Modul existierten oder einen nur sehr eingeschränkten Funktionsumfang hatten.   
+  
