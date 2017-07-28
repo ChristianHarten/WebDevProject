@@ -108,7 +108,7 @@ let ElementTools = function (d3, maputils, trackArray) {
 
 	/*
 	 * Handler Funktion für Click auf Track Element
-	 * Weist map Objekt an, Pfad zu zeichnen (Höhenprofil wird ebenfalls in Map gezeichnet
+	 * Weist map Objekt an, Pfad zu zeichnen (Höhenprofil wird ebenfalls in Map gezeichnet)
 	 */
 	function handleTrackClick() {
 		let el = d3.event.target;

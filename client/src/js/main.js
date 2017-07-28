@@ -10,8 +10,9 @@ const maputils = require("./modules/map-utils");
 let tracksArray;
 let client = new httpclient.HttpClient(d3);
 let map = new maputils.MapLoader(d3);
+let port = window.location.port;
 
-client.get("http://localhost:8080/data/list", handleGetResponse);
+client.get("http://localhost:"+port+"/data/list", handleGetResponse);
 
 // Request Callback, da GET Anfrage asynchron ausgeführt wird
 function handleGetResponse(data) {

@@ -66,7 +66,7 @@ let MapLoader = function (d3) {
 
 			maxHeight = Math.max(currentHeight, maxHeight);
 			if (i === len - 1) {
-				heightData.push(0); // hm
+				heightData.push(0);
 			}
 		}
 	}
@@ -84,7 +84,7 @@ let MapLoader = function (d3) {
 			maxZoom: 18,
 			attribution: attribution
 		}).addTo(tmpMap);
-		tmpMap.setView([52.370216, 4.895168], 12);
+		tmpMap.setView([13.374711, 3.140815], 12);
 		return tmpMap;
 	}
 
@@ -124,11 +124,11 @@ let MapLoader = function (d3) {
 		let line = d3.line()
 			.x(function (d, i) {
 				return xScale(i);
-			}) // set the x values for the line generator
+			})
 			.y(function (d) {
 				return yScale(d.y);
-			}) // set the y values for the line generator
-			.curve(d3.curveMonotoneX);// apply smoothing to the line
+			})//.curve(d3.curveMonotoneX)
+			;// apply smoothing to the line
 
 		// Füge SVG zur Seite hinzu (in elevationChart div)
 		let svg = d3.select("#elevationChart")
