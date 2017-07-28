@@ -1,4 +1,3 @@
 module.exports = {
-	ElementTools: require("./src/elementtools"),
-	HTMLHelper: require("./src/htmlhelper")
+	ElementTools: require("./src/elementtools")
 };

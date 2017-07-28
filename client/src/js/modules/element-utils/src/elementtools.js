@@ -148,6 +148,7 @@ let ElementTools = function (d3, maputils, trackArray) {
 		timer = setTimeout(function () {
 			clearSidebar();
 			_this.displayTracks();
+			map.resizeMap();
 			map.updateElevationChart();
 		}, 250);
 	});

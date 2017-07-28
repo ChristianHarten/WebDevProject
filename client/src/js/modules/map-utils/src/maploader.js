@@ -30,12 +30,14 @@ let MapLoader = function (d3) {
 			onEachFeature: saveHeightDataAndCenterBounds
 		}).addTo(map);
 
-		map.fitBounds(bounds);
-
+		_this.resizeMap();
 		_this.updateElevationChart();
 	};
 	this.updateElevationChart = function () {
 		displayElevation();
+	};
+	this.resizeMap = function () {
+		map.fitBounds(bounds);
 	};
 
 	/*
