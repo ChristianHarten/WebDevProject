@@ -4,17 +4,17 @@
 const L = require("leaflet");
 
 let MapLoader = function (d3) {
-	let _this = this,
-		map = init(),
-		trackStyle = {
-			"color": "#ff0000",
-			"weight": 2,
-			"opacity": 0.7
-		},
-		trackLayer,
-		heightData = [],
-		bounds = [],
-		maxHeight;
+	let _this = this;
+	let map = init();
+	let trackStyle = {
+		color: "#ff0000",
+		weight: 2,
+		opacity: 0.7
+	};
+	let trackLayer;
+	let heightData = [];
+	let bounds = [];
+	let maxHeight;
 
 	/*
 	 * Erhält GeoJSON Feature und zeichnet darin enthaltene Koordinaten auf Map
@@ -75,7 +75,9 @@ let MapLoader = function (d3) {
 	 * private Funktion, initialisiert Map mit Tiles etc, zentriert auf Trier
 	 */
 	function init() {
-		let tmpMap = L.map("map", {zoomControl: false});
+		let tmpMap = L.map("map", {
+			zoomControl: false
+		});
 		let osmTiles = "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
 		let attribution = "© OpenStreetMap";
 		L.Icon.Default.imagePath = "../leaflet/images";
@@ -98,16 +100,20 @@ let MapLoader = function (d3) {
 		// lese Dimensionen der Map aus und berechne Höhe und Breite des Charts in deren Abhängigkeit
 		// Höhe maximal 120px, evtl hier noch nachbessern, sieht auf manchen Screens zu klein aus
 		let dimensions = d3.select("#map").node().getBoundingClientRect();
-		let margin = {top: 15, right: 15, bottom: 15, left: 30},
-			width = dimensions.width / 4,
-			height = dimensions.height / 3 > 120 ? 120 : dimensions.height / 3;
+		let margin = {
+			top: 15, right: 15, bottom: 15, left: 30
+		};
+		let width = dimensions.width / 4;
+		let height = dimensions.height / 3 > 120 ? 120 : dimensions.height / 3;
 
 		// Anzahl der Datenelemente
 		let n = heightData.length;
 		// Gibt ein Array der Länge n zurück. Jeder Eintrag ist key-value Paar, wobei
 		// key = y und value = datenelement
 		let dataset = d3.range(n).map(function (d) {
-			return {"y": heightData[d]}
+			return {
+				y: heightData[d]
+			};
 		});
 
 		// skaliert x Achse in Abhängigkeit der Breite und Anzahl der Datenelemente
@@ -128,7 +134,7 @@ let MapLoader = function (d3) {
 			.y(function (d) {
 				return yScale(d.y);
 			})//.curve(d3.curveMonotoneX)
-			;// apply smoothing to the line
+		;// apply smoothing to the line
 
 		// Füge SVG zur Seite hinzu (in elevationChart div)
 		let svg = d3.select("#elevationChart")

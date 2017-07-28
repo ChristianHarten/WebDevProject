@@ -13,7 +13,7 @@
     "debug:html": "copyfiles -f .\\client\\src\\index.html .\\client\\dist\\",
     "debug:js": "node ./node_modules/browserify/bin/cmd.js client/src/js/main.js -o client/dist/js/main.js",
     "postdebug": "npm run debug:dist && npm run debug:leaflet && npm run debug:html && npm run debug:css && npm run debug:js",
-    "lint": "./node_modules/.bin/eslint client/src/js/main.js",
+    "lint": "./node_modules/.bin/eslint client/src/js/**",
     "prebuild": "npm install",
     "build": "npm run lint",
     "build:css": "node ./node_modules/less/bin/lessc --clean-css ./client/src/styles/style.less ./client/dist/styles/style.min.css",
@@ -27,7 +27,6 @@
   "author": "Kevin Kirsten, Sascha Esch",
   "license": "ISC",
   "devDependencies": {
-    "babelify": "^7.3.0",
     "babili": "^0.1.4",
     "browserify": "^14.4.0",
     "copyfiles": "^1.2.0",

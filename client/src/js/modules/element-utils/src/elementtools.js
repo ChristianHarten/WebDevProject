@@ -2,11 +2,11 @@
  * Hilfsmodul für das Anzeigen der Map, Tracks, Anmelden der EventListener usw
  */
 let ElementTools = function (d3, maputils, trackArray) {
-	let _this = this,
-		currentPage = 1,
-		pages,
-		tracks = trackArray,
-		map = maputils;
+	let _this = this;
+	let currentPage = 1;
+	let pages;
+	let tracks = trackArray;
+	let map = maputils;
 	/*
 	 * öffentliche Funktion zur Anzeige der Tracks
 	 */
@@ -79,7 +79,6 @@ let ElementTools = function (d3, maputils, trackArray) {
 		d3.select("#allPages").text(pages.toString());
 	}
 
-
 	// private Funktion zum Paginieren des Arrays
 	// Array wird in Bereiche geteilt, Bereich wird zurückgegeben
 	function paginate(array, pageSize, pageNumber) {
@@ -90,7 +89,6 @@ let ElementTools = function (d3, maputils, trackArray) {
 
 	function removeTrackEventListener() {
 		d3.selectAll(".navigationElement").on("click", null);
-
 	}
 
 	function addTrackEventListener() {
@@ -152,6 +150,5 @@ let ElementTools = function (d3, maputils, trackArray) {
 		}, 250);
 	});
 };
-
 
 module.exports = ElementTools;
