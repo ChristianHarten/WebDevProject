@@ -15,7 +15,7 @@
     "postdebug": "npm run debug:dist && npm run debug:leaflet && npm run debug:html && npm run debug:css && npm run debug:js",
     "lint": "./node_modules/.bin/eslint client/src/js/main.js",
     "prebuild": "npm install",
-    "build": "npm run deletedist && npm run lint",
+    "build": "npm run lint",
     "build:css": "node ./node_modules/less/bin/lessc --clean-css ./client/src/styles/style.less ./client/dist/styles/style.min.css",
     "build:dist": "mkdir .\\client\\dist\\js",
     "build:leaflet": "copyfiles -f .\\node_modules\\leaflet\\dist\\leaflet.css .\\client\\dist\\leaflet\\ && copyfiles -f .\\node_modules\\leaflet\\dist\\images\\* .\\client\\dist\\leaflet\\images\\",
