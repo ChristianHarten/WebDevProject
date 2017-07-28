@@ -83,8 +83,7 @@ let ElementTools = function (d3, maputils, trackArray) {
 	// private Funktion zum Paginieren des Arrays
 	// Array wird in Bereiche geteilt, Bereich wird zurückgegeben
 	function paginate(array, pageSize, pageNumber) {
-		--pageNumber;
-		let startIndex = pageNumber * pageSize;
+		let startIndex = --pageNumber * pageSize;
 		let endIndex = (pageNumber + 1) * pageSize > array.length ? array.length : (pageNumber + 1) * pageSize;
 		return array.slice(startIndex, endIndex);
 	}
@@ -140,7 +139,7 @@ let ElementTools = function (d3, maputils, trackArray) {
 	}
 
 	/*
-	 * Debounce Funktion: verhindert das ständige feuern des resize events mithilfe eines Timers
+	 * Debounce Funktion: verhindert das ständige Auslösen des resize events mithilfe eines Timers
 	 */
 	let timer;
 	window.addEventListener("resize", function () {

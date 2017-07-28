@@ -98,9 +98,9 @@ let MapLoader = function (d3) {
 		// lese Dimensionen der Map aus und berechne Höhe und Breite des Charts in deren Abhängigkeit
 		// Höhe maximal 120px, evtl hier noch nachbessern, sieht auf manchen Screens zu klein aus
 		let dimensions = d3.select("#map").node().getBoundingClientRect();
-		let margin = {top: 15, right: 15, bottom: 15, left: 30}
-			, width = dimensions.width / 4
-			, height = dimensions.height / 3 > 120 ? 120 : dimensions.height / 3;
+		let margin = {top: 15, right: 15, bottom: 15, left: 30},
+			width = dimensions.width / 4,
+			height = dimensions.height / 3 > 120 ? 120 : dimensions.height / 3;
 
 		// Anzahl der Datenelemente
 		let n = heightData.length;
